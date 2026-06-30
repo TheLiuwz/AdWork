@@ -1,5 +1,7 @@
 package com.example.adwork;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,6 +32,16 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        SharedPreferences sp = getSharedPreferences("login", MODE_PRIVATE);
+        String savedId = sp.getString("card_id", null);
+        if (savedId != null) {
+            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+            intent.putExtra("card_id", savedId);
+            startActivity(intent);
+            finish();
+            return;
+        }
+
         etCardNumber = findViewById(R.id.et_card_number);
         etPassword = findViewById(R.id.et_password);
         btnLogin = findViewById(R.id.btn_login);
@@ -42,6 +54,11 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "请输入账号和密码", Toast.LENGTH_SHORT).show();
             } else if (dBhelper.checkLogin(id, password)) {
                 Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
+                sp.edit().putString("card_id", id).apply();
+                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                intent.putExtra("card_id", id);
+                startActivity(intent);
+                finish();
             } else {
                 Toast.makeText(this, "账号或密码错误", Toast.LENGTH_SHORT).show();
             }
