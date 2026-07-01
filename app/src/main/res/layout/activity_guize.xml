@@ -54,20 +54,20 @@
             android:padding="20dp">
 
             <TextView
+                android:id="@+id/tv_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="嘉兴大学学生申请校外住宿管理规定"
                 android:textColor="#333333"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tv_doc_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:gravity="center"
-                android:text="嘉大学字〔2024〕10号"
                 android:textColor="#666666"
                 android:textSize="14sp" />
 
@@ -78,11 +78,11 @@
                 android:background="#EEEEEE" />
 
             <TextView
+                android:id="@+id/tv_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:lineSpacingExtra="6dp"
-                android:text="@string/regulation_text"
                 android:textColor="#555555"
                 android:textSize="14sp" />
 
