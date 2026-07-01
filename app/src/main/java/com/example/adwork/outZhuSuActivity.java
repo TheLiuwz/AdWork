@@ -15,6 +15,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.adwork.Tools.DBhelper;
+
 public class outZhuSuActivity extends AppCompatActivity {
 
     private EditText etStartDate, etEndDate, etReason, etPhone;
@@ -78,11 +79,9 @@ public class outZhuSuActivity extends AppCompatActivity {
                     dormInfo = b.toUpperCase() + " - " + d;
                 }
                 cursor.close();
-
                 long appId = dBhelper.insertApplication(cardId, name, className, dormInfo, phone, startDate, endDate, reason);
                 dBhelper.insertLog(appId, cardId, "待审核");
                 dBhelper.insertOutsideAddress(appId, outsideAddr, contactPerson, contactPhone);
-
                 Toast.makeText(this, "申请已提交，等待审核", Toast.LENGTH_SHORT).show();
                 finish();
             }

@@ -10,6 +10,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 public class HomeActivity extends AppCompatActivity {
 
     private ShiWuFragment ShiWuFragment;
@@ -30,7 +31,6 @@ public class HomeActivity extends AppCompatActivity {
         ShiWuFragment = new ShiWuFragment();
         profileFragment = new GeRenFragment();
 
-        // 默认显示事务处理
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container, profileFragment, "profile")
                 .hide(profileFragment)

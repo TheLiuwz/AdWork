@@ -14,6 +14,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.adwork.Tools.DBhelper;
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText etCardNumber, etPassword;
@@ -32,17 +33,14 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        // 初始化控件
         etCardNumber = findViewById(R.id.et_card_number);
         etPassword = findViewById(R.id.et_password);
         btnLogin = findViewById(R.id.btn_login);
         dBhelper = new DBhelper(this);
 
-        // 返回按钮
         ImageView ivBack = findViewById(R.id.iv_back);
         ivBack.setOnClickListener(v -> finish());
 
-        // 登录按钮点击事件
         btnLogin.setOnClickListener(v -> {
             String id = etCardNumber.getText().toString().trim();
             String password = etPassword.getText().toString().trim();

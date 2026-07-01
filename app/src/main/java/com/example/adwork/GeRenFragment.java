@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.adwork.Tools.DBhelper;
+
 public class GeRenFragment extends Fragment {
 
     private DBhelper dBhelper;
@@ -37,14 +38,12 @@ public class GeRenFragment extends Fragment {
 
         loadUserInfo(view);
 
-        // 我的事务 — 查看申请记录
         view.findViewById(R.id.ll_my_transactions).setOnClickListener(v -> {
             Intent intent = new Intent(requireActivity(), MyShiWuActivity.class);
             intent.putExtra("card_id", cardId);
             startActivity(intent);
         });
 
-        // 退出登录
         view.findViewById(R.id.ll_logout).setOnClickListener(v -> {
             SharedPreferences sp = requireActivity().getSharedPreferences("login", requireActivity().MODE_PRIVATE);
             sp.edit().clear().apply();

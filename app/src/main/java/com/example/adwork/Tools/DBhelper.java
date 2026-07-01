@@ -15,7 +15,7 @@ import java.util.Locale;
 /**
  * 数据库帮助类（SQLite）
  * 管理所有数据表的创建、升级和基本 CRUD 操作
- * 共 8 张表：
+ * 共 9 张表：
  *   1. account           - 账号密码表（一卡通号、密码）
  *   2. personal_info     - 个人信息表（姓名、性别、学院、班级、学号、宿舍）
  *   3. dorm_building     - 宿舍楼信息（楼名、楼层、管理员）
@@ -24,6 +24,7 @@ import java.util.Locale;
  *   6. application_log   - 申请提交日志（时间、状态）
  *   7. approval          - 审批记录（审批人、意见、结果）
  *   8. outside_address   - 外出住宿地址信息（关联申请ID）
+ *   9. regulation        - 规章制度表
  */
 public class DBhelper extends SQLiteOpenHelper {
 
@@ -95,56 +96,55 @@ public class DBhelper extends SQLiteOpenHelper {
                 + "status TEXT)");
 
         ContentValues rm = new ContentValues();
-        rm.put("building_name", "QX5");//房间楼号
-        rm.put("room_number", "624");//房间号
-        rm.put("bed_count", 6);//床位
-        rm.put("occupied_count", 4);//已住人数
+        rm.put("building_name", "QX5");
+        rm.put("room_number", "624");
+        rm.put("bed_count", 6);
+        rm.put("occupied_count", 4);
         rm.put("status", "部分空闲");
         db.insert("dorm_room", null, rm);
 
         // 表5: 申请表
         db.execSQL("CREATE TABLE application ("
-                + "app_id INTEGER PRIMARY KEY AUTOINCREMENT, "//自增主键
-                + "card_number TEXT, "//一卡通号
-                + "name TEXT, "//名字
-                + "class_name TEXT, //班级"
-                + "dorm_info TEXT, "//当前住宿信息
-                + "phone TEXT, "//手机号
-                + "start_date TEXT, "//开始日期
-                + "end_date TEXT, "//结束日期
-                + "reason TEXT)");//理由
+                + "app_id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "card_number TEXT, "
+                + "name TEXT, "
+                + "class_name TEXT, "
+                + "dorm_info TEXT, "
+                + "phone TEXT, "
+                + "start_date TEXT, "
+                + "end_date TEXT, "
+                + "reason TEXT)");
 
         // 表6: 申请日志表
         db.execSQL("CREATE TABLE application_log ("
                 + "log_id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + "card_number TEXT, "//卡号
-                + "submit_time TEXT, "//提交时间
-                + "status TEXT)");//状态（比如审批中
+                + "card_number TEXT, "
+                + "submit_time TEXT, "
+                + "status TEXT)");
 
         // 表7: 审批记录表
         db.execSQL("CREATE TABLE approval ("
                 + "approval_id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + "approver_name TEXT, "//审批人姓名
-                + "opinion TEXT, "//意见
-                + "approve_time TEXT, "//时间
-                + "result TEXT)");//结果
+                + "approver_name TEXT, "
+                + "opinion TEXT, "
+                + "approve_time TEXT, "
+                + "result TEXT)");
 
         // 表8: 外出住宿地址表
         db.execSQL("CREATE TABLE outside_address ("
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + "app_id INTEGER, "//一卡通号
-                + "address TEXT, "//地址
-                + "contact_person TEXT, "//紧急联系人
-                + "contact_phone TEXT)");//联系人手机号
+                + "app_id INTEGER, "
+                + "address TEXT, "
+                + "contact_person TEXT, "
+                + "contact_phone TEXT)");
 
         // 表9: 规章制度表
         db.execSQL("CREATE TABLE regulation ("
                 + "reg_id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + "title TEXT, "//标题
-                + "doc_number TEXT, "//文件编号
-                + "content TEXT)");//全文
+                + "title TEXT, "
+                + "doc_number TEXT, "
+                + "content TEXT)");
 
-        // 初始化规章制度数据
         String title = "嘉兴大学学生申请校外住宿管理规定";
         String docNumber = "嘉大学字〔2024〕10号";
         String content = mContext.getString(R.string.regulation_text);
@@ -182,7 +182,7 @@ public class DBhelper extends SQLiteOpenHelper {
         return ok;
     }
 
-    //个人信息相关
+    // 个人信息相关
 
     public Cursor getUserInfo(String cardNumber) {
         return getReadableDatabase().query("personal_info", null,

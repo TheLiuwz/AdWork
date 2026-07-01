@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -16,7 +15,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.adwork.Tools.ApplicationAdapter;
 import com.example.adwork.Tools.DBhelper;
+
 public class ShenHeProgressActivity extends AppCompatActivity {
 
     private DBhelper dBhelper;
@@ -67,28 +68,7 @@ public class ShenHeProgressActivity extends AppCompatActivity {
         tvEmpty.setVisibility(View.GONE);
         listView.setVisibility(View.VISIBLE);
 
-        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
-                R.layout.item_shenqin, cursor,
-                new String[]{"app_id", "reason", "start_date", "end_date", "submit_time", "status"},
-                new int[]{R.id.tv_app_id, R.id.tv_reason, R.id.tv_date_range, R.id.tv_submit_time, R.id.tv_submit_time, R.id.tv_status},
-                0) {
-            @Override
-            public void bindView(View view, android.content.Context context, Cursor cursor) {
-                String reason = cursor.getString(cursor.getColumnIndexOrThrow("reason"));
-                String startDate = cursor.getString(cursor.getColumnIndexOrThrow("start_date"));
-                String endDate = cursor.getString(cursor.getColumnIndexOrThrow("end_date"));
-                String submitTime = cursor.getString(cursor.getColumnIndexOrThrow("submit_time"));
-                String status = cursor.getString(cursor.getColumnIndexOrThrow("status"));
-                int appId = cursor.getInt(cursor.getColumnIndexOrThrow("app_id"));
-
-                ((TextView) view.findViewById(R.id.tv_app_id)).setText("外出住宿申请 #" + appId);
-                ((TextView) view.findViewById(R.id.tv_reason)).setText(reason);
-                ((TextView) view.findViewById(R.id.tv_date_range)).setText("时间: " + startDate + " 至 " + endDate);
-                ((TextView) view.findViewById(R.id.tv_submit_time)).setText("提交于 " + submitTime);
-                ((TextView) view.findViewById(R.id.tv_status)).setText(status);
-            }
-        };
-
+        ApplicationAdapter adapter = new ApplicationAdapter(this, cursor);
         listView.setAdapter(adapter);
     }
 }
