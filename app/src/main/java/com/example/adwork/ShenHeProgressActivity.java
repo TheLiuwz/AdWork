@@ -17,14 +17,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.adwork.Tools.DBhelper;
-
-/**
- * 审核进度 Activity
- * 功能：展示用户所有申请记录列表，无记录时显示"当前无事务处理"
- *       点击某条记录跳转全屏页面展示审核状态（审核中/审核完成/已退回）
- * 数据库表：application + application_log
- * 入口：ShiWuFragment → 审核进度
- */
 public class ShenHeProgressActivity extends AppCompatActivity {
 
     private DBhelper dBhelper;

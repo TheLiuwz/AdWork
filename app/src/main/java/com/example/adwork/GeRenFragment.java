@@ -15,14 +15,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.adwork.Tools.DBhelper;
-
-/**
- * 个人中心 Fragment
- * 功能：展示用户个人信息（姓名、班级、一卡通号、宿舍楼号、宿舍号）
- *       提供"我的事务"入口（查看申请记录）和"退出登录"功能
- * 数据库表：user（读取用户信息）
- * 入口：HomeActivity 底部导航栏"个人中心" tab
- */
 public class GeRenFragment extends Fragment {
 
     private DBhelper dBhelper;

@@ -21,7 +21,6 @@
         </activity>
         <activity android:name=".HomeActivity" />
         <activity android:name=".GuiZeActivity" />
-        <activity android:name=".ShenQingActivity" />
         <activity android:name=".MyShiWuActivity" />
         <activity android:name=".outZhuSuActivity" />
         <activity android:name=".ShenHeProgressActivity" />

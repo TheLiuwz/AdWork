@@ -9,12 +9,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-/**
- * 事务处理 Fragment
- * 功能：展示功能入口列表（规则查看、外出住宿处理），点击跳转对应 Activity
- * 入口：HomeActivity 底部导航栏"事务处理" tab
- */
 public class ShiWuFragment extends Fragment {
 
     @Nullable

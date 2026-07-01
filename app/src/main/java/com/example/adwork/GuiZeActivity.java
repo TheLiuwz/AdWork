@@ -8,13 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
-/**
- * 规则查看 Activity
- * 功能：展示《嘉兴大学学生申请校外住宿管理规定》全文（嘉大学字〔2024〕10号）
- * 内容来源：strings.xml 中的 regulation_text
- * 入口：TransactionFragment → 规则查看
- */
 public class GuiZeActivity extends AppCompatActivity {
 
     @Override

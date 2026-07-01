@@ -15,15 +15,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.adwork.Tools.DBhelper;
-
-/**
- * 外出住宿处理 Activity
- * 功能：填写校外住宿申请表单，提交后数据存入数据库
- *       自动填充用户信息（姓名、一卡通号、班级、当前宿舍）
- *       需填写：手机号、出发/返回日期、申请理由、校外住宿地址、联系人、联系电话
- * 数据库表：application（存申请数据）、application_log（存提交日志）、outside_address（存住宿地址）
- * 入口：TransactionFragment → 外出住宿处理
- */
 public class outZhuSuActivity extends AppCompatActivity {
 
     private EditText etStartDate, etEndDate, etReason, etPhone;

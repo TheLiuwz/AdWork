@@ -12,13 +12,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.adwork.Tools.DBhelper;
-
-/**
- * 审核状态全屏展示 Activity
- * 功能：白色全屏背景，正中央显示审核状态文字（审核中/审核完成/已退回）
- * 数据库表：application_log（查询状态）
- * 入口：ShenHeProgressActivity → 点击某条申请记录
- */
 public class ZhuangTaiActivity extends AppCompatActivity {
 
     @Override

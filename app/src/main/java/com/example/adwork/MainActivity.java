@@ -14,12 +14,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.adwork.Tools.DBhelper;
-
-/**
- * 登录界面 Activity
- * 功能：用户输入一卡通号和密码，与数据库校验后跳转主界面
- * 数据库表：user（查询一卡通号和密码）
- */
 public class MainActivity extends AppCompatActivity {
 
     private EditText etCardNumber, etPassword;

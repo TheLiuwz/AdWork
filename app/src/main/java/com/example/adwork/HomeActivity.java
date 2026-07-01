@@ -10,11 +10,6 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-/**
- * 主界面 Activity（登录成功后进入）
- * 功能：底部导航栏切换"事务处理"和"个人中心"两个 Fragment
- */
 public class HomeActivity extends AppCompatActivity {
 
     private ShiWuFragment ShiWuFragment;

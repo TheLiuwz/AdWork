@@ -52,12 +52,6 @@ public class MyShiWuActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.lv_applications);
         tvCount = findViewById(R.id.tv_count);
-
-        listView.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
-            Intent intent = new Intent(this, ShenQingActivity.class);
-            intent.putExtra("app_id", (int) id);
-            startActivity(intent);
-        });
     }
 
     @Override
