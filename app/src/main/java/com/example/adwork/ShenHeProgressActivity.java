@@ -54,7 +54,7 @@ public class ShenHeProgressActivity extends AppCompatActivity {
         tvEmpty = findViewById(R.id.tv_empty);
 
         listView.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
-            Intent intent = new Intent(this, StatusFullScreenActivity.class);
+            Intent intent = new Intent(this, ZhuangTaiActivity.class);
             intent.putExtra("app_id", (int) id);
             startActivity(intent);
         });

@@ -1,5 +1,6 @@
 package com.example.adwork;
 
+import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -18,7 +19,7 @@ import com.example.adwork.Tools.DBhelper;
  * 数据库表：application_log（查询状态）
  * 入口：ShenHeProgressActivity → 点击某条申请记录
  */
-public class StatusFullScreenActivity extends AppCompatActivity {
+public class ZhuangTaiActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
