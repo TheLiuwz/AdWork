@@ -25,6 +25,7 @@
         <activity android:name=".MyShiWuActivity" />
         <activity android:name=".outZhuSuActivity" />
         <activity android:name=".ShenHeProgressActivity" />
+        <activity android:name=".StatusFullScreenActivity" />
     </application>
 
 </manifest>

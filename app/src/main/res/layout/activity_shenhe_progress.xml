@@ -1,125 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F0F0F0"
+    android:orientation="vertical"
     tools:context=".ShenHeProgressActivity">
 
+    <!-- 标题栏 -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="48dp"
+        android:background="@color/teal"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
-        <!-- 标题栏 -->
-        <LinearLayout
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="48dp"
             android:layout_height="48dp"
-            android:background="@color/teal"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:padding="12dp"
+            android:src="@drawable/ic_back"
+            android:contentDescription="返回" />
 
-            <ImageView
-                android:id="@+id/iv_back"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:padding="12dp"
-                android:src="@drawable/ic_back"
-                android:contentDescription="返回" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="审核进度"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <View
-                android:layout_width="48dp"
-                android:layout_height="48dp" />
-        </LinearLayout>
-
-        <!-- 无事务提示 -->
         <TextView
-            android:id="@+id/tv_empty"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="当前无事务处理"
-            android:textColor="#999999"
-            android:textSize="16sp"
-            android:visibility="gone" />
-
-        <!-- 事务列表 -->
-        <ListView
-            android:id="@+id/lv_applications"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="8dp"
-            android:paddingStart="12dp"
-            android:paddingTop="12dp"
-            android:paddingEnd="12dp" />
+            android:gravity="center"
+            android:text="审核进度"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="48dp"
+            android:layout_height="48dp" />
     </LinearLayout>
 
-    <!-- 审核状态弹窗（居中显示） -->
-    <LinearLayout
-        android:id="@+id/ll_status_dialog"
+    <!-- 无事务提示 -->
+    <TextView
+        android:id="@+id/tv_empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#80000000"
         android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="gone">
+        android:text="当前无事务处理"
+        android:textColor="#999999"
+        android:textSize="16sp"
+        android:visibility="gone" />
 
-        <LinearLayout
-            android:layout_width="280dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_white_card"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="32dp">
+    <!-- 事务列表 -->
+    <ListView
+        android:id="@+id/lv_applications"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="8dp"
+        android:paddingStart="12dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="12dp" />
 
-            <TextView
-                android:id="@+id/tv_dialog_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#333333"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tv_dialog_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tv_dialog_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textColor="#999999"
-                android:textSize="13sp" />
-
-            <Button
-                android:id="@+id/btn_dialog_close"
-                android:layout_width="120dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/btn_green_round"
-                android:text="关  闭"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
-        </LinearLayout>
-    </LinearLayout>
-
-</FrameLayout>
+</LinearLayout>

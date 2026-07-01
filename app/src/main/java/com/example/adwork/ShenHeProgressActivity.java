@@ -1,12 +1,11 @@
 package com.example.adwork;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
@@ -21,9 +20,8 @@ import com.example.adwork.Tools.DBhelper;
 
 /**
  * 审核进度 Activity
- * 功能：展示用户所有申请记录列表，点击后在屏幕中央显示审核状态
- *       状态分为：审核中（橙色）、审核完成（绿色）、已退回（红色）
- *       无申请记录时显示"当前无事务处理"
+ * 功能：展示用户所有申请记录列表，无记录时显示"当前无事务处理"
+ *       点击某条记录跳转全屏页面展示审核状态（审核中/审核完成/已退回）
  * 数据库表：application + application_log
  * 入口：ShiWuFragment → 审核进度
  */
@@ -32,8 +30,7 @@ public class ShenHeProgressActivity extends AppCompatActivity {
     private DBhelper dBhelper;
     private String cardId;
     private ListView listView;
-    private LinearLayout llStatusDialog;
-    private TextView tvDialogTitle, tvDialogStatus, tvDialogTime;
+    private TextView tvEmpty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,26 +51,18 @@ public class ShenHeProgressActivity extends AppCompatActivity {
         ivBack.setOnClickListener(v -> finish());
 
         listView = findViewById(R.id.lv_applications);
-        TextView tvEmpty = findViewById(R.id.tv_empty);
-        llStatusDialog = findViewById(R.id.ll_status_dialog);
-        tvDialogTitle = findViewById(R.id.tv_dialog_title);
-        tvDialogStatus = findViewById(R.id.tv_dialog_status);
-        tvDialogTime = findViewById(R.id.tv_dialog_time);
-        Button btnClose = findViewById(R.id.btn_dialog_close);
+        tvEmpty = findViewById(R.id.tv_empty);
 
-        // 关闭弹窗
-        btnClose.setOnClickListener(v -> llStatusDialog.setVisibility(View.GONE));
-        llStatusDialog.setOnClickListener(v -> llStatusDialog.setVisibility(View.GONE));
-
-        // 点击事务条目，显示审核状态
         listView.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
-            showStatusDialog((int) id);
+            Intent intent = new Intent(this, StatusFullScreenActivity.class);
+            intent.putExtra("app_id", (int) id);
+            startActivity(intent);
         });
 
-        loadData(tvEmpty);
+        loadData();
     }
 
-    private void loadData(TextView tvEmpty) {
+    private void loadData() {
         Cursor cursor = dBhelper.getApplicationsByUser(cardId);
 
         if (cursor.getCount() == 0) {
@@ -109,37 +98,5 @@ public class ShenHeProgressActivity extends AppCompatActivity {
         };
 
         listView.setAdapter(adapter);
-    }
-
-    private void showStatusDialog(int appId) {
-        Cursor cursor = dBhelper.getApplicationDetail(appId);
-        if (cursor.moveToFirst()) {
-            String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
-            String status = cursor.getString(cursor.getColumnIndexOrThrow("status"));
-            String submitTime = cursor.getString(cursor.getColumnIndexOrThrow("submit_time"));
-
-            tvDialogTitle.setText("外出住宿申请 #" + appId);
-            tvDialogTime.setText("提交于 " + submitTime);
-
-            // 根据状态设置颜色和文字
-            switch (status) {
-                case "审核完成":
-                    tvDialogStatus.setText("✓ 审核完成");
-                    tvDialogStatus.setTextColor(0xFF4CAF50); // 绿色
-                    break;
-                case "已退回":
-                    tvDialogStatus.setText("✗ 已退回");
-                    tvDialogStatus.setTextColor(0xFFE53935); // 红色
-                    break;
-                case "审核中":
-                default:
-                    tvDialogStatus.setText("● 审核中");
-                    tvDialogStatus.setTextColor(0xFFFF9800); // 橙色
-                    break;
-            }
-
-            llStatusDialog.setVisibility(View.VISIBLE);
-        }
-        cursor.close();
     }
 }
