@@ -1,6 +1,5 @@
 package com.example.adwork;
 
-import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -18,7 +17,7 @@ public class ZhuangTaiActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_status_full_screen);
+        setContentView(R.layout.activity_zhuangtai);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(android.R.id.content), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());

@@ -68,7 +68,7 @@ public class ShenHeProgressActivity extends AppCompatActivity {
         listView.setVisibility(View.VISIBLE);
 
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
-                R.layout.item_application, cursor,
+                R.layout.item_shenqin, cursor,
                 new String[]{"app_id", "reason", "start_date", "end_date", "submit_time", "status"},
                 new int[]{R.id.tv_app_id, R.id.tv_reason, R.id.tv_date_range, R.id.tv_submit_time, R.id.tv_submit_time, R.id.tv_status},
                 0) {

@@ -1,10 +1,8 @@
 package com.example.adwork;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -36,7 +34,7 @@ public class MyShiWuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_my_transactions);
+        setContentView(R.layout.activity_my_shiwu);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -70,7 +68,7 @@ public class MyShiWuActivity extends AppCompatActivity {
         int[] to = {R.id.tv_app_id, R.id.tv_reason, R.id.tv_date_range, R.id.tv_submit_time, R.id.tv_submit_time, R.id.tv_status};
 
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
-                R.layout.item_application, cursor, from, to, 0) {
+                R.layout.item_shenqin, cursor, from, to, 0) {
             @Override
             public void bindView(View view, android.content.Context context, Cursor cursor) {
                 int appId = cursor.getInt(cursor.getColumnIndexOrThrow("app_id"));
