@@ -1,0 +1,64 @@
+package com.example.adwork;
+
+import android.os.Bundle;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+/**
+ * 主界面 Activity（登录成功后进入）
+ * 功能：底部导航栏切换"事务处理"和"个人中心"两个 Fragment
+ */
+public class HomeActivity extends AppCompatActivity {
+
+    private ShiWuFragment ShiWuFragment;
+    private GeRenFragment profileFragment;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_home);
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+
+        ShiWuFragment = new ShiWuFragment();
+        profileFragment = new GeRenFragment();
+
+        // 默认显示事务处理
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.fragment_container, profileFragment, "profile")
+                .hide(profileFragment)
+                .add(R.id.fragment_container, ShiWuFragment, "transaction")
+                .commit();
+
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
+        bottomNav.setOnItemSelectedListener(item -> {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            if (item.getItemId() == R.id.nav_transaction) {
+                ft.show(ShiWuFragment).hide(profileFragment);
+            } else if (item.getItemId() == R.id.nav_profile) {
+                ft.show(profileFragment).hide(ShiWuFragment);
+            }
+            ft.commit();
+            return true;
+        });
+    }
+
+    public void switchToTransaction() {
+        getSupportFragmentManager().beginTransaction()
+                .show(ShiWuFragment).hide(profileFragment).commit();
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
+        bottomNav.setSelectedItemId(R.id.nav_transaction);
+    }
+}

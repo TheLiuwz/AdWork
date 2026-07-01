@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0F0F0"
+    tools:context=".AccommodationActivity">
+
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- 标题栏 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/teal"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:padding="12dp"
+                android:src="@drawable/ic_back"
+                android:contentDescription="返回" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="外出住宿处理"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="48dp"
+                android:layout_height="48dp" />
+        </LinearLayout>
+
+        <!-- 表单卡片 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bg_white_card"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="外出住宿申请表"
+                android:textColor="#333333"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:layout_marginTop="12dp" android:background="#EEEEEE" />
+
+            <!-- 姓名 -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="40dp" android:gravity="center_vertical" android:orientation="horizontal">
+                <TextView android:layout_width="80dp" android:layout_height="wrap_content" android:text="姓名" android:textColor="#333333" android:textSize="14sp" />
+                <TextView android:id="@+id/tv_name" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textColor="#555555" android:textSize="14sp" />
+            </LinearLayout>
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE" />
+
+            <!-- 一卡通号 -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="40dp" android:gravity="center_vertical" android:orientation="horizontal">
+                <TextView android:layout_width="80dp" android:layout_height="wrap_content" android:text="一卡通号" android:textColor="#333333" android:textSize="14sp" />
+                <TextView android:id="@+id/tv_card_number" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textColor="#555555" android:textSize="14sp" />
+            </LinearLayout>
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE" />
+
+            <!-- 班级 -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="40dp" android:gravity="center_vertical" android:orientation="horizontal">
+                <TextView android:layout_width="80dp" android:layout_height="wrap_content" android:text="班级" android:textColor="#333333" android:textSize="14sp" />
+                <TextView android:id="@+id/tv_class" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textColor="#555555" android:textSize="14sp" />
+            </LinearLayout>
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE" />
+
+            <!-- 当前住宿 -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="40dp" android:gravity="center_vertical" android:orientation="horizontal">
+                <TextView android:layout_width="80dp" android:layout_height="wrap_content" android:text="当前住宿" android:textColor="#333333" android:textSize="14sp" />
+                <TextView android:id="@+id/tv_dorm" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textColor="#555555" android:textSize="14sp" />
+            </LinearLayout>
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE" />
+
+            <!-- 手机号码 -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="44dp" android:gravity="center_vertical" android:orientation="horizontal">
+                <TextView android:layout_width="80dp" android:layout_height="wrap_content" android:text="手机号码" android:textColor="#333333" android:textSize="14sp" />
+                <EditText android:id="@+id/et_phone" android:layout_width="0dp" android:layout_height="38dp" android:layout_weight="1" android:background="@drawable/bg_input_field" android:hint="请输入手机号码" android:inputType="phone" android:maxLines="1" android:paddingStart="8dp" android:paddingEnd="8dp" android:textColorHint="#AAAAAA" android:textSize="14sp" />
+            </LinearLayout>
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE" />
+
+            <!-- 出发日期 -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="44dp" android:gravity="center_vertical" android:orientation="horizontal">
+                <TextView android:layout_width="80dp" android:layout_height="wrap_content" android:text="出发日期" android:textColor="#333333" android:textSize="14sp" />
+                <EditText android:id="@+id/et_start_date" android:layout_width="0dp" android:layout_height="38dp" android:layout_weight="1" android:background="@drawable/bg_input_field" android:hint="如：2026-07-01" android:inputType="date" android:maxLines="1" android:paddingStart="8dp" android:textColorHint="#AAAAAA" android:textSize="14sp" />
+            </LinearLayout>
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE" />
+
+            <!-- 返回日期 -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="44dp" android:gravity="center_vertical" android:orientation="horizontal">
+                <TextView android:layout_width="80dp" android:layout_height="wrap_content" android:text="返回日期" android:textColor="#333333" android:textSize="14sp" />
+                <EditText android:id="@+id/et_end_date" android:layout_width="0dp" android:layout_height="38dp" android:layout_weight="1" android:background="@drawable/bg_input_field" android:hint="如：2026-07-15" android:inputType="date" android:maxLines="1" android:paddingStart="8dp" android:textColorHint="#AAAAAA" android:textSize="14sp" />
+            </LinearLayout>
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE" />
+
+            <!-- 申请理由 -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="top" android:orientation="horizontal" android:paddingTop="10dp" android:paddingBottom="10dp">
+                <TextView android:layout_width="80dp" android:layout_height="wrap_content" android:text="申请理由" android:textColor="#333333" android:textSize="14sp" />
+                <EditText android:id="@+id/et_reason" android:layout_width="0dp" android:layout_height="100dp" android:layout_weight="1" android:background="@drawable/bg_input_field" android:gravity="top" android:hint="请填写外出原因" android:paddingStart="8dp" android:paddingTop="8dp" android:textColorHint="#AAAAAA" android:textSize="14sp" />
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE" />
+
+            <!-- 外出住宿地址 -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="top" android:orientation="horizontal" android:paddingTop="10dp" android:paddingBottom="10dp">
+                <TextView android:layout_width="80dp" android:layout_height="wrap_content" android:text="住宿地址" android:textColor="#333333" android:textSize="14sp" />
+                <EditText android:id="@+id/et_outside_address" android:layout_width="0dp" android:layout_height="80dp" android:layout_weight="1" android:background="@drawable/bg_input_field" android:gravity="top" android:hint="请输入校外住宿详细地址" android:paddingStart="8dp" android:paddingTop="8dp" android:textColorHint="#AAAAAA" android:textSize="14sp" />
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE" />
+
+            <!-- 联系人 -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="44dp" android:gravity="center_vertical" android:orientation="horizontal">
+                <TextView android:layout_width="80dp" android:layout_height="wrap_content" android:text="联系人" android:textColor="#333333" android:textSize="14sp" />
+                <EditText android:id="@+id/et_contact_person" android:layout_width="0dp" android:layout_height="38dp" android:layout_weight="1" android:background="@drawable/bg_input_field" android:hint="房东或紧急联系人姓名" android:maxLines="1" android:paddingStart="8dp" android:paddingEnd="8dp" android:textColorHint="#AAAAAA" android:textSize="14sp" />
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE" />
+
+            <!-- 联系电话 -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="44dp" android:gravity="center_vertical" android:orientation="horizontal">
+                <TextView android:layout_width="80dp" android:layout_height="wrap_content" android:text="联系电话" android:textColor="#333333" android:textSize="14sp" />
+                <EditText android:id="@+id/et_contact_phone" android:layout_width="0dp" android:layout_height="38dp" android:layout_weight="1" android:background="@drawable/bg_input_field" android:hint="联系人电话" android:inputType="phone" android:maxLines="1" android:paddingStart="8dp" android:paddingEnd="8dp" android:textColorHint="#AAAAAA" android:textSize="14sp" />
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE" />
+
+            <!-- 提交按钮 -->
+            <Button
+                android:id="@+id/btn_submit"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/btn_green_round"
+                android:text="提  交"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
