@@ -199,7 +199,7 @@ public class DBhelper extends SQLiteOpenHelper {
         cv.put("start_date", startDate);
         cv.put("end_date", endDate);
         cv.put("reason", reason);
-        return getWritableDatabase().insert("application", null, cv);
+        return getWritableDatabase().insert("application", null, cv);//返回一个行id 作为审核表的id
     }
 //获取已经有的可以确定的一些个人信息 然后存入申请表里先行完善
     public void insertLog(long appId, String cardNumber, String status) {

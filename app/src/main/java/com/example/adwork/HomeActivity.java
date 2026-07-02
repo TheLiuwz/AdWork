@@ -49,11 +49,4 @@ public class HomeActivity extends AppCompatActivity {
             return true;
         });
     }
-
-    public void switchToTransaction() {
-        getSupportFragmentManager().beginTransaction()
-                .show(ShiWuFragment).hide(profileFragment).commit();
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
-        bottomNav.setSelectedItemId(R.id.nav_transaction);
-    }
 }
