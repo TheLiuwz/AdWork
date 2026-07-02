@@ -13,18 +13,16 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * 数据库帮助类（SQLite）
- * 管理所有数据表的创建、升级和基本 CRUD 操作
  * 共 9 张表：
- *   1. account           - 账号密码表（一卡通号、密码）
- *   2. personal_info     - 个人信息表（姓名、性别、学院、班级、学号、宿舍）
- *   3. dorm_building     - 宿舍楼信息（楼名、楼层、管理员）
- *   4. dorm_room         - 宿舍房间（房间号、床位数、入住状态）
- *   5. application       - 外出住宿申请数据
- *   6. application_log   - 申请提交日志（时间、状态）
- *   7. approval          - 审批记录（审批人、意见、结果）
- *   8. outside_address   - 外出住宿地址信息（关联申请ID）
- *   9. regulation        - 规章制度表
+ *   1. account 账号密码表（一卡通号、密码）
+ *   2. personal_info 个人信息表（姓名、性别、学院、班级、学号、宿舍）
+ *   3. dorm_building 宿舍楼信息（楼名、楼层、管理员）
+ *   4. dorm_room 宿舍房间（房间号、床位数、入住状态）
+ *   5. application 外出住宿申请数据
+ *   6. application_log 申请提交日志（时间、状态）
+ *   7. approval 审批记录（审批人、意见、结果）
+ *   8. outside_address 外出住宿地址信息（关联申请ID）
+ *   9. regulation 规章制度表
  */
 public class DBhelper extends SQLiteOpenHelper {
 
@@ -170,7 +168,7 @@ public class DBhelper extends SQLiteOpenHelper {
         onUpgrade(db, oldVersion, newVersion);
     }
 
-    // 账号密码相关
+    // 确认账号密码是否正确
 
     public boolean checkLogin(String cardNumber, String password) {
         Cursor c = getReadableDatabase().query("account", null,
@@ -182,19 +180,16 @@ public class DBhelper extends SQLiteOpenHelper {
         return ok;
     }
 
-    // 个人信息相关
-
+    // 根据一卡通号获取个人信息
     public Cursor getUserInfo(String cardNumber) {
         return getReadableDatabase().query("personal_info", null,
                 "card_number=?", new String[]{cardNumber},
                 null, null, null);
     }
-
-    // 申请相关
-
+    // 将申请内容存入表
     public long insertApplication(String cardNumber, String name, String className,
-                                   String dormInfo, String phone, String startDate,
-                                   String endDate, String reason) {
+                                  String dormInfo, String phone, String startDate,
+                                  String endDate, String reason) {
         ContentValues cv = new ContentValues();
         cv.put("card_number", cardNumber);
         cv.put("name", name);
@@ -206,7 +201,7 @@ public class DBhelper extends SQLiteOpenHelper {
         cv.put("reason", reason);
         return getWritableDatabase().insert("application", null, cv);
     }
-
+//获取已经有的可以确定的一些个人信息 然后存入申请表里先行完善
     public void insertLog(long appId, String cardNumber, String status) {
         ContentValues cv = new ContentValues();
         cv.put("app_id", appId);
@@ -215,7 +210,7 @@ public class DBhelper extends SQLiteOpenHelper {
         cv.put("status", status);
         getWritableDatabase().insert("application_log", null, cv);
     }
-
+//通过一卡通号获取申请表的相关数据
     public Cursor getApplicationsByUser(String cardNumber) {
         return getReadableDatabase().rawQuery(
                 "SELECT a.app_id AS _id, a.app_id, a.name, a.reason, a.start_date, a.end_date, "
@@ -226,7 +221,7 @@ public class DBhelper extends SQLiteOpenHelper {
                         + "ORDER BY l.submit_time DESC",
                 new String[]{cardNumber});
     }
-
+//获取申请详情
     public Cursor getApplicationDetail(int appId) {
         return getReadableDatabase().rawQuery(
                 "SELECT a.*, l.submit_time, l.status "
@@ -235,21 +230,9 @@ public class DBhelper extends SQLiteOpenHelper {
                         + "WHERE a.app_id=?",
                 new String[]{String.valueOf(appId)});
     }
-
-    public int getApplicationCount(String cardNumber) {
-        Cursor c = getReadableDatabase().rawQuery(
-                "SELECT COUNT(*) FROM application WHERE card_number=?",
-                new String[]{cardNumber});
-        c.moveToFirst();
-        int count = c.getInt(0);
-        c.close();
-        return count;
-    }
-
-    // 外出住宿地址相关
-
+    // 存储外出地址
     public void insertOutsideAddress(long appId, String address, String contactPerson,
-                                      String contactPhone) {
+                                     String contactPhone) {
         ContentValues cv = new ContentValues();
         cv.put("app_id", appId);
         cv.put("address", address);
@@ -257,35 +240,10 @@ public class DBhelper extends SQLiteOpenHelper {
         cv.put("contact_phone", contactPhone);
         getWritableDatabase().insert("outside_address", null, cv);
     }
-
-    public Cursor getOutsideAddress(int appId) {
-        return getReadableDatabase().query("outside_address", null,
-                "app_id=?", new String[]{String.valueOf(appId)},
-                null, null, null);
-    }
-
-    // 审批相关
-
-    public void insertApproval(int appId, String approver, String opinion, String result) {
-        ContentValues cv = new ContentValues();
-        cv.put("app_id", appId);
-        cv.put("approver_name", approver);
-        cv.put("opinion", opinion);
-        cv.put("approve_time", new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).format(new Date()));
-        cv.put("result", result);
-        getWritableDatabase().insert("approval", null, cv);
-    }
-
-    // 规章制度相关
+    // 获取所有的规章制度
 
     public Cursor getAllRegulations() {
         return getReadableDatabase().query("regulation", null,
                 null, null, null, null, null);
-    }
-
-    public Cursor getRegulation(int regId) {
-        return getReadableDatabase().query("regulation", null,
-                "reg_id=?", new String[]{String.valueOf(regId)},
-                null, null, null);
     }
 }
